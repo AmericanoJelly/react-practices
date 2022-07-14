@@ -1,7 +1,7 @@
 {
-  "name": "ex06",
+  "name": "ex07",
   "version": "1.0.0",
-  "description": "",
+  "description": "ex07: ex00.cra Reconfiguration(내가 직접 설정)",
   "main": "index.js",
   "scripts": {
     "build": "npx webpack",
