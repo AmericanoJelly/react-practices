@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import {PropTypes} from 'prop-types';
 
-function MyComponent({props01, props02, props03, props04, props05, props06}) {
+function MyComponent({props01, props02, props03, props04, props05, props06, props07, props08, props09}) {
     return (
         <Fragment>
             <h2>Property Vaildation</h2>
@@ -20,24 +20,53 @@ function MyComponent({props01, props02, props03, props04, props05, props06}) {
 
             <span>props05 : {props05.map((e,i) => <b key={i}>{e}</b>)}</span>
             <br/>
-
-            <span>props06 : {props06 ? props06 : '---Not Set---'}</span>
+            
+            <span>props06 : {props06 ? props06() : '---Not Set---'}</span>
             <br/>
+
+            <span>props07 : {props07 ? props07 : '---Not Set---'}</span>
+            <br/>
+
+            <span>props08 : {props08.map((e,i) => <b key={i}>{`${e}`}</b>)}</span>
+            <br/>
+
+            <span>props09 : 
+                {
+                    props09 ? 
+                        <div>
+                           <h3>{props09.no}</h3>  
+                           <h4>{props09.email}</h4>  
+                           <h5>{props09.name}</h5>     
+
+                        </div> 
+                        :
+                        <strong>'---Not Set---'</strong> 
+                }
+            </span>
+            <br/>
+
         </Fragment>
     );
 }
 
 // property type and required
 MyComponent.propTypes = {
-    // ProtoTypes Validator: JavsScript Data Type
+    // ProtoTypes Validator : JavaScript
     props01: PropTypes.string,
     props02: PropTypes.number.isRequired,
     props03: PropTypes.bool.isRequired,
     props04: PropTypes.object.isRequired,
     props05: PropTypes.array.isRequired,
-    props06: PropTypes.func.isRequired
+    props06: PropTypes.func.isRequired,
 
-    // ProtoTypes Validator: Combined with JavaScript Data Type
+    // ProtoTypes Validator : Combined with JavaScript Data Type
+    props07: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    props08: PropTypes.arrayOf(PropTypes.bool),
+    props09: PropTypes.shape({
+        no: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        email: PropTypes.string.isRequired
+    }).isRequired
 }
 
 // property default value
@@ -47,6 +76,6 @@ MyComponent.defaultProps = {
     props03: false,
     props04: {},
     props05: [],
-    props06: () => {} //dummy function
+    props06: () => {}  // function()={} || 더미함수(dumy function)
 }
 export default MyComponent;
