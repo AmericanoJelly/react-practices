@@ -12,11 +12,9 @@ ex01: Property(props)
  src/03 : FoodList : Data Flow(Top -> Down): 함수 컴포넌트
  src/04 : Validation
 
-
-
 ===================================================================================================================================
 1. 설치
-    [ex01]$ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader node-sass sass-loader babel-loader @babel/core @babel/cli @babel/preset-env @babel/preset-react
+    [ex01]$ npm i -D webpack webpack-cli webpack-dev-server style-loader css-loader node-sass sass-loader babel-loader @babel/core @babel/cli @babel/preset-env @babel/preset-react prop-types@15.8.1
     [ex01]$ npm i react react-dom
 
 2. 설정
