@@ -4,12 +4,13 @@
             "targets": {
                 "ie": 11,
                 "edge": "89",
-                "firefox": "90",
+                "firefox": "92",
+                "chrome": "90",
                 "opera": "76",
                 "safari": "15"
             }
         }],
-        "@babel/react"
+        "@babel/preset-react"
     ],
     "plugins": []
 }
