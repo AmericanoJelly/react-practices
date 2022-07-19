@@ -1,8 +1,8 @@
 import React from 'react';
 import emails from './assets/json/data.json';
-import styles from './assets/css/styles.css';
 import EmailList from './EmailList';
 import SearchBar from './SearchBar';
+import styles from './assets/css/styles.css';
 
 
 function App() {
