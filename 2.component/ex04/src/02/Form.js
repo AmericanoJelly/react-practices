@@ -4,6 +4,7 @@ import './assets/Form.css';
 export default function Form() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
+    const [validEmail, setValidEmail] = useState(false);
 
     const onChangeNameInput = e => {
         setName(e.target.value);
@@ -13,8 +14,9 @@ export default function Form() {
 
     const onChangeEmailInput = e => {
         setEmail(e.target.value);
-        // 10자 제한
-        setEmail(e.target.value.substr(0,10));
+        // check email format(account@mysite.com)
+        const re =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
+        setValidEmail(re.test(e.target.value));
     }
 
     return (
@@ -25,7 +27,7 @@ export default function Form() {
                 name="name" 
                 type="text" 
                 value={name}
-                onChange={onChangeNameInput} />
+                onChange={onChangeNameInput} /> 
 
             <label htmlFor="email">이메일</label>
             <input 
@@ -33,11 +35,11 @@ export default function Form() {
                 name="email" 
                 type="text" 
                 value={email}
-                onChange={onChangeEmailInput} />
+                onChange={onChangeEmailInput} />{validEmail ? "ok" : "no"} 
 
             <label htmlFor="password">패스워드</label>
             <input id="password" name="password" type="password" value={ "" } />
-
+           
             <fieldset>
                 <legend>성별</legend>
                 <label>여</label> <input type="radio" name="gender" value={ "female" } defaultChecked={ true } />
