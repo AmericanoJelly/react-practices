@@ -1,9 +1,8 @@
 import React from 'react';
-import cards from './assets/json/data.json';
 import KanbanBoard from './KanbanBoard';
+import './assets/css/App.css';
 
 function App() {
-    console.log(cards);
     return (
         <div id={'App'}>
          <KanbanBoard />
