@@ -11,12 +11,12 @@ export default function Card({no, title, description, status, tasks}) {
         <div className={styles.Card}>
         <div
             className={!showDetail? styles.Card__Title:[styles.Card__Title, styles.Card__Title__Open].join(" ")}
-            onClick={e => { setShowDetail(!showDetail)}}>
+            onClick={e => { setShowDetail(showDetail=>!showDetail)}}>
             {title}
         </div>
         
         {showDetail?
-        <div onClick={showDetail}>
+        <div>
           {description}
           <TaskList tasks={tasks} />
         </div> 

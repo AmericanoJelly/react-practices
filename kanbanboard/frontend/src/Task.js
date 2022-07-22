@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './assets/css/Task.css';
 
-export default function Task({no, name, done, notifyChangeTaskDone}) {
+export default function Task({no, name, done}) {
+    const [check, setCheck] = useState(false);
+
+    const onChangeCheckbox = e =>{
+        setCheck(check=>!check);
+    } 
+    
+
     return (
-        <li className={styles.Task}>
+        <li className={styles.Task} >
             <input 
                 type='checkbox' 
-                checked={done === 'Y'}/>
+                onChange={onChangeCheckbox}/>
             {name}
             <a href='#' className={styles.Task__remove}/>
         </li>
