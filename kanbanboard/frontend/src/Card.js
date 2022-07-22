@@ -11,16 +11,21 @@ export default function Card({no, title, description, status, tasks}) {
         <div className={styles.Card}>
         <div
             className={[styles.Card__Title, styles.Card__Title__Open].join(" ")}
-            onClick={e => {}}>
+            onClick={e => { setShowDetail(!showDetail)}}>
             {title}
         </div>
-        <div class='Card__Details'>
+        
+        {showDetail?
+        <div class='Card__Details' onClick={showDetail}>
           {description}
           <TaskList tasks={tasks} />
         </div> 
+        :false
+        }
         </div>
     );
 }
+
 
 Card.propTypes = {
     // title: PropTypes.string.isRequired,

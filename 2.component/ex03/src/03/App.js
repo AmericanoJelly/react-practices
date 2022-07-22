@@ -4,7 +4,7 @@ export default function App() {
 
     const onChangeMessageInput = function(event) {
         console.log(event.target.name, ':', event.target.value);
-    }
+    }   
 
     const onAddFormSubmit = function(event) {
         event.preventDefault();
