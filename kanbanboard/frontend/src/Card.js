@@ -6,22 +6,29 @@ import styles from './assets/scss/Card.scss';
 
 export default function Card({no, title, description, status, tasks}) {
     const [showDetail, setShowDetail] = useState(false);
+    const styleSideColor={
+        position: 'absolute',
+        zIndex: -1,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        width: 3,
+        backgroundColor: status === 'ToDo' ? '#bd8D31' : (status === 'Doing' ? '#3a7e28' : '#222') 
+    }
 
     return (
         <div className={styles.Card}>
+            <div style={styleSideColor} />
         <div
             className={!showDetail? styles.Card__Title:[styles.Card__Title, styles.Card__Title__Open].join(" ")}
             onClick={e => { setShowDetail(showDetail=>!showDetail)}}>
             {title}
         </div>
         
-        {showDetail?
         <div>
-          {description}
-          <TaskList tasks={tasks} />
+        {description}
+        {showDetail? <TaskList tasks={tasks} /> :null}
         </div> 
-        :false
-        }
         </div>
     );
 }

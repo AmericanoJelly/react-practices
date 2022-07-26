@@ -14,6 +14,7 @@ export default function Task({no, name, done}) {
         <li className={styles.Task} >
             <input 
                 type='checkbox' 
+                checked={check}
                 onChange={onChangeCheckbox}/>
             {name}
             <a href='#' className={styles.Task__remove}/>
