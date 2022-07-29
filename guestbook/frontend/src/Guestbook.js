@@ -17,16 +17,16 @@ export default function Guestbook() {
         console.log("!!!!!!!!!!!--------> UPDATE!!!!!");
     });
 
-    const notifyMessage = {
-        delete: function (no) {
-            setMessages(messages.filter((message) => message.no != no));
-        },
-        add: async function (message) {
-            const response = await fetch('/api', {
+    const deleteMessage = function (no) {
+        setMessages(messages.filter((message) => message.no != no));
+    }
+
+    const addMessage = async function (message) {
+            const response = await fetch('/api/guestbook', {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'applcation/json'
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(message)
             });
@@ -41,7 +41,6 @@ export default function Guestbook() {
             }
 
             setMessages([json.data, ...messages]);
-        }
     }
 
     const fetchMessage = async function () {
@@ -57,11 +56,11 @@ export default function Guestbook() {
         const startNo = messages.length === 0 ? 0 : messages[messages.length-1].no;
 
         try {
-            const response = await fetch(`/api/${startNo}`, {
+            const response = await fetch(`/api/guestbook?no=${startNo}`, {
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'applcation/json'
+                    'Accept': 'application/json'
                 }
             });
 
@@ -95,8 +94,8 @@ export default function Guestbook() {
             <div ref={innerRef}>
                 <div className={styles.Guestbook}>
                     <h1>방명록</h1>
-                    <WriteForm notifyMessage={notifyMessage}/>
-                    <MessageList messages={messages} notifyMessage={notifyMessage}/>
+                    <WriteForm callback={addMessage}/>
+                    <MessageList messages={messages} callback={deleteMessage}/>
                 </div>
             </div>
         </div>
