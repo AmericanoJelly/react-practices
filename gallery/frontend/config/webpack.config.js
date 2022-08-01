@@ -1,10 +1,10 @@
 const path = require('path');
 
 module.exports = (env) => ({
-    mode: "none",
-    entry: path.resolve('frontend/src/index.js'),
+    mode: "development",
+    entry: path.resolve('src/index.js'),
     output: {
-        path: path.resolve('backend/public'),
+        path: path.resolve('public'),
         filename: 'assets/js/main.js',
         assetModuleFilename: 'images/[hash][ext]'
     },
@@ -24,19 +24,19 @@ module.exports = (env) => ({
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
-                configFile: path.resolve('frontend/config/babel.config.json')
+                configFile: path.resolve('config/babel.config.json')
             }
         }]
     },
     devtool: "eval-source-map",
     devServer: {
-        contentBase: path.resolve('frontend/public'),
+        contentBase: path.resolve('public'),
         watchContentBase: true,
         host: "0.0.0.0",
-        port: 9999,
+        port: 9090,
         proxy: {
-            '/api': 'http://localhost:8888',
-            '/assets/upload-images': 'http://localhost:8888'
+            '/api': 'http://localhost:8080',
+            '/assets/gallery': 'http://localhost:8080'
         },
         inline: true,
         liveReload: true,
@@ -45,4 +45,3 @@ module.exports = (env) => ({
         historyApiFallback: true
     }
 });
-
