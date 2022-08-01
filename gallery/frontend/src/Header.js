@@ -5,7 +5,7 @@ import modalStyles from './assets/scss/modal.scss';
 
 Modal.setAppElement('body');
 
-export default function Header({notifyImage}) {
+export default function Header({callback}) {
 
     const refForm = useRef(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function Header({notifyImage}) {
         const comment = e.target['comment'].value;
         const file = e.target['uploadImage'].files[0];
 
-        notifyImage.add(comment, file);
+        callback(comment, file);
         setModalIsOpen(false);
     }
 

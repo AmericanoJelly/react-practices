@@ -8,11 +8,11 @@ export default function Gallery() {
 
     useEffect(async () => {
         try {
-            const response = await fetch('/api', {
+            const response = await fetch('/api/gallery', {
                 method: 'get',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'applcation/json'
+                    'Accept': 'application/json'
                 }
             });
 
@@ -31,8 +31,8 @@ export default function Gallery() {
         }
     }, []);
 
-    const notifyImage = {
-        add: async function(comment, file) {
+
+    const addImage = async function(comment, file) {
             try {
 
                 // Create FormData
@@ -41,9 +41,11 @@ export default function Gallery() {
                 formData.append('file', file);
 
                 // Post
-                const response = await fetch(`/api`, {
+                const response = await fetch(`/api/gallery`, {
                     method: 'post',
-                    headers: { 'Accept': 'applcation/json' },
+                    headers: { 
+                        'Accept': 'application/json'
+                    },
                     body: formData
                 });
 
@@ -63,13 +65,15 @@ export default function Gallery() {
             } catch (err) {
                 console.error(err);
             }
-        },
-        delete: async function(no) {
-            try {
+    };
+    
+    const deleteImage = async function(no) {
+        console.log("!!!!!...", no);
+        try {
                 // Delete
-                const response = await fetch(`/api/${no}`, {
+                const response = await fetch(`/api/gallery/${no}`, {
                     method: 'delete',
-                    headers: { 'Accept': 'applcation/json' },
+                    headers: { 'Accept': 'application/json' },
                     body: null
                 });
 
@@ -85,17 +89,16 @@ export default function Gallery() {
                 }
 
                 // re-rendering(update)
-                setImageList(imageList.filter((item) => item.no !== parseInt(json.data)));
+                setImageList(imageList.filter((item) => item.no !== parseInt(json.data.no)));
             } catch (err) {
                 console.error(err);
             }
-        }
     }
 
     return (
         <div className={ styles.Gallery }>
-            <Header notifyImage={ notifyImage }/>
-            <ImageList imageList={ imageList } notifyImage={ notifyImage } />
+            <Header callback={ addImage }/>
+            <ImageList imageList={ imageList } callback={ deleteImage } />
         </div>
     )
 }
