@@ -6,8 +6,8 @@
 -   AJAX: fetch API
 
 ## Configuration
-Application(Project) 구조
-webapack configuration
-babel configuration
-package.json
+- Application(Project) 구조
+- webapack configuration
+- babel configuration
+- package.json
 
